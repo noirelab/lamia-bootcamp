@@ -22,7 +22,6 @@
 # import controle.while_1
 # import controle.outros_exemplos
 
-# ---- funcoes ----
 # from funcoes import basico
 
 # basico.saudacao()
@@ -43,7 +42,17 @@
 
 # from funcoes import funcional
 
-import funcoes.map_reduce
+# import funcoes.map_reduce
+
+# import funcoes.lambdas
+
+# import funcoes.comprehension
+
+# import oo.produto
+
+# import oo.heranca
+
+# import oo.membros
 
 # ---- inicio ----
 # x = """import pacote.sub.arquivo """ # você consegue printar uma linha de código como string
