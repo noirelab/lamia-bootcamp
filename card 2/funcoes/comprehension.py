@@ -16,3 +16,5 @@ total = reduce(somar, notas_alunos_aprovados, 0)
 
 print(total / len(alunos_aprovados))
 
+# Exemplo próprio - 
+

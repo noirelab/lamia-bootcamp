@@ -12,3 +12,11 @@ def resultadoFinal(**kwargs): # **kwargs = dicionário
 
     # print(kwargs['nome'])
     # print(kwargs['nota'])
+    
+# Exemplo próprio -
+def subtrair(*nums):
+    inicial = 0
+    for n in nums: 
+        inicial -= n
+        
+    return inicial

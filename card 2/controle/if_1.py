@@ -15,3 +15,11 @@ else:
     print('reprovado')
 
 print(nota)
+
+# Exemplo próprio -
+altura = 140
+alto = True if altura >= 175 else False
+if alto:
+    print('você é alto!')
+else:
+    print('você não é alto!')

@@ -49,3 +49,9 @@ print(' ')
     
 for key in produto.keys(): # pega somente as chaves
     print(key)
+    
+# Exemplo próprio -
+# Pares de 0 a 100
+for i in range(1,20):
+    if i % 2 == 0:
+        print(i)

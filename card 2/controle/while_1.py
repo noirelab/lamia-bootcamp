@@ -20,3 +20,8 @@ while x:
     
 print('fim')
 """ # for baixa renda
+
+# Exemplo próprio -
+answer = 0
+while answer != 5:
+    answer = int(input('digite 5 para encerrar'))

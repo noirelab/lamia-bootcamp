@@ -13,3 +13,7 @@ if a:
     
 else:
     print('não existe ou zero ou vazio')
+    
+# Exemplo próprio -
+g = ' - '
+print(g)

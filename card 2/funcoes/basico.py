@@ -10,3 +10,7 @@ def soma_e_multi(a, b, x):
 
 if __name__ == '__main__': # só executa se for o arquivo principal
     saudacao('ana', idade = 30)
+    
+# Exemplo próprio -
+def areaDoQuadrado(a, b):
+    return a * b

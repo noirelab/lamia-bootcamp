@@ -19,3 +19,10 @@ for i in range(1, 11):
     if i == 5:
         break # quebra o laço
     print(i, end=' ')
+    
+print("")
+
+# Exemplo próprio -
+for i in range(0, 10):
+    if i % 2 == 1:
+        print(f'{i} é impar')
