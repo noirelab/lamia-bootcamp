@@ -36,3 +36,17 @@ r3 = soma_1(4)
 
 resultado_final = soma_parcial(10)(12)
 print(resultado_final, r1, r2, r3)
+
+# Exemplo próprio -
+def sub_parcial(a): # parcial 
+    def concluir_sub(b): # resto da parcial
+        return a - b
+    return concluir_sub
+
+sub_p_1 = sub_parcial(100)
+a1 = sub_p_1(100)
+a2 = sub_p_1(10)
+a3 = sub_p_1(1)
+
+resultado_final_proprio = sub_parcial(10)(12)
+print(resultado_final_proprio, a1, a2, a3)

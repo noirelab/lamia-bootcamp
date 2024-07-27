@@ -10,4 +10,8 @@ print(+y) # n faz nada
 
 w = 12
 # w++ nao existe no python, mas w += 1 sim
-print()
+print('')
+
+# Exemplo próprio -
+x = False
+print(not x)

@@ -7,3 +7,7 @@ resultado %= 6 # 2
 
 print(resultado)
 
+# Exemplo próprio -
+soma = 312
+soma += 3
+print(soma)

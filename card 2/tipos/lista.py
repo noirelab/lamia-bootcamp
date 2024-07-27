@@ -14,3 +14,10 @@ nums.insert(0, -200) # insere na posição 0
 print(nums[-1]) # acessa o último elemento
 
 print(nums)
+print()
+
+# Exemplo próprio -
+nums.append(1000)
+print(nums)
+print(len(nums))
+print(132 in nums)

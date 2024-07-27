@@ -31,3 +31,10 @@ print(total)
     
 # for i in range(len(notas)):
 #     notas[i] = notas[i] +5
+
+# Exemplo próprio -
+def sub(a,b):
+    return a - b
+
+total = reduce(sub, notas, 0)
+print(total)

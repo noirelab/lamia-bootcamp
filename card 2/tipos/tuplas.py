@@ -14,3 +14,7 @@ print(nomes[:-2]) # todos os elementos ate o penultimo
 print(len(nomes))
 print(type(nomes))
 print(nomes)
+
+# Exemplo próprio -
+print(nomes[4]) # acessa o quinto elemento
+print(nomes[1:4]) # do segundo ao quarto

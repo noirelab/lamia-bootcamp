@@ -13,3 +13,9 @@ x = 3
 y = 4
 
 print(b1 and not b2 and x < y)  # True, operadores racionais com opradores logicos
+print('')
+# Exemplo próprio -
+b2 = True
+b4 = False
+print(b1 and b2 and b3 and b1 and b2)
+print(b1 and b2 and b3 and b1 and b2 and b4)

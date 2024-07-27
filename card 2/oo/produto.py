@@ -26,3 +26,28 @@ p2.preco = 17.99
 
 print(p1.nome, p1.preco, p1.desc, p1.preco_final)
 print(p2.nome, p2.preco, p2.desc, p2.preco_final)
+print('')
+
+# Exemplo próprio - 
+class lojaDeCarro:
+    def __init__(self, nome, preco = 100000, desc = 0):
+        self.nome = nome
+        self.__preco = preco
+        self.desc = desc
+        
+    @property
+    def preco(self):
+        return f'O {self.nome} custa R${self.__preco}'
+    
+    @preco.setter
+    def preco(self, valor):
+        self.__preco = valor
+        
+    @property
+    def valor_final(self):
+        return self.__preco * (1 - self.desc)
+    
+carro1 = lojaDeCarro('jetta', 120000, 0.1)
+print(carro1.preco)
+print(f'valor com desconto: R${carro1.valor_final}')
+

@@ -1,4 +1,3 @@
-print("--- variaveis.py ---")
 a = 3
 b = 4.4
 
@@ -19,3 +18,7 @@ area = pi * pow(raio, 2) # pow(raio, 2) == raio ** 2
 
 print(f'a area da circuferencia é {area} m^2') 
 print(type(raio)) 
+
+# Exemplo próprio -
+print(b - a)
+print(saudacao * 2)

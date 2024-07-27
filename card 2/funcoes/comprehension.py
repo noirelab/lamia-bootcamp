@@ -17,4 +17,14 @@ total = reduce(somar, notas_alunos_aprovados, 0)
 print(total / len(alunos_aprovados))
 
 # Exemplo próprio - 
+pilotos = [
+    {'nome': 'hamilton', 'vitorias': 104},
+    {'nome': 'shumacher', 'vitorias': 91},
+    {'nome': 'verstappen', 'vitorias': 61},
+    {'nome': 'vettel', 'vitorias': 53},
+    {'nome': 'prost', 'vitorias': 51}
+]
 
+top3 = [piloto for piloto in pilotos if piloto['vitorias'] >= 54]
+
+print(top3)

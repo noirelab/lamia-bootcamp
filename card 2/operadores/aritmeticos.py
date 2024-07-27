@@ -15,3 +15,6 @@ par = 34
 impar = 33
 print(par % 2 == 0)
 print(impar % 2 == 1)
+
+# Exemplo próprio -
+print(x + y * 2 / 4 * 5) # 17.5

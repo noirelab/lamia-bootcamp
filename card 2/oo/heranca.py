@@ -29,3 +29,14 @@ print(c1.acelerar())
 print(c1.frear())
 print(c1.frear())
 print(c1.frear())
+print('')
+
+# Exemplo próprio -
+class Lamborghini(Carro):
+    def acelerar(self):
+        super().acelerar()
+        return super().acelerar()
+    
+cL = Lamborghini()
+print(cL.acelerar())
+print(cL.frear())
