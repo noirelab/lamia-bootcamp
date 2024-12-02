@@ -10,6 +10,7 @@ default_args = {
     'owner': 'Airflow'
 }
 
+# callback de sucesso da segunda task
 def second_task():
     print('Hello from second_task')
     # raise ValueError('This will turns the python task in failed state')

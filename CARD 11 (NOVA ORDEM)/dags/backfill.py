@@ -8,11 +8,12 @@ default_args = {
     'owner': 'Airflow'
 }
 
+# o schedule interval é a frequência com que o dag vai rodar
 with DAG(dag_id='backfill', schedule_interval="0 0 * * *", default_args=default_args, catchup=False) as dag:
-    
+
     # Task 1
     bash_task_1 = BashOperator(task_id='bash_task_1', bash_command="echo 'first task'")
-    
+
     # Task 2
     bash_task_2 = BashOperator(task_id='bash_task_2', bash_command="echo 'second task'")
 

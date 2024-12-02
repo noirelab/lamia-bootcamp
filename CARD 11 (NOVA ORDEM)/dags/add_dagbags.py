@@ -1,6 +1,5 @@
-# Script to add new DAGs folders using
-# the class DagBag
-# Paths must be absolute
+# script para adicionar dags de diferentes diretórios ao airflow
+
 import os
 from airflow.models import DagBag
 dags_dirs = [
@@ -8,6 +7,7 @@ dags_dirs = [
                 '/usr/local/airflow/project_b'
             ]
 
+# passa o loop para cada diretório
 for dir in dags_dirs:
    dag_bag = DagBag(os.path.expanduser(dir))
 
