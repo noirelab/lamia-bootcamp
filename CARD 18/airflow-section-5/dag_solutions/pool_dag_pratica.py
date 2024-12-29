@@ -4,26 +4,28 @@ from airflow.operators.bash_operator import BashOperator
 
 from datetime import datetime
 
-default_args = {
-    'start_date': datetime(2019, 1, 1),
+default_args = { # define os argumentos padrão
+    'start_date': datetime(2024, 1, 1),
     'owner': 'Airflow',
     'email': 'owner@test.com'
 }
 
-with DAG(dag_id='pool_dag', schedule_interval='0 0 * * *', default_args=default_args, catchup=False) as dag:
-    
-    # get forex rates of JPY and push them into XCOM
+# alterei o id pra condizer com o nome do arquivo
+# alterei o catchup para True pra diferenciar do outro arquivo
+with DAG(dag_id='pool_dag_pratica', schedule_interval='0 0 * * *', default_args=default_args, catchup=True) as dag:
+
+    # mesma função para pegar as taxas do euro
     get_forex_rate_EUR = SimpleHttpOperator(
-        task_id='get_forex_rate_EUR',
-        method='GET',
-        priority_weight=1,
-        pool='forex_api_pool',
-        http_conn_id='forex_api',
-        endpoint='/latest?base=EUR',
-        xcom_push=True
+        task_id='get_forex_rate_EUR', # id
+        method='GET', # função
+        priority_weight=1, # prioridade
+        pool='forex_api_pool', # pool
+        http_conn_id='forex_api', # conexão
+        endpoint='/latest?base=EUR', # endpoint
+        xcom_push=True # comunicação entre tarefas
     )
- 
-    # get forex rates of JPY and push them into XCOM
+
+    # pega as taxas da parte do forex do dólar e coloca no XCOM
     get_forex_rate_USD = SimpleHttpOperator(
         task_id='get_forex_rate_USD',
         method='GET',
@@ -33,8 +35,8 @@ with DAG(dag_id='pool_dag', schedule_interval='0 0 * * *', default_args=default_
         endpoint='/latest?base=USD',
         xcom_push=True
     )
- 
-    # get forex rates of JPY and push them into XCOM
+
+    # pega as taxas da parte do forex do iene e coloca no XCOM
     get_forex_rate_JPY = SimpleHttpOperator(
         task_id='get_forex_rate_JPY',
         method='GET',
@@ -44,8 +46,8 @@ with DAG(dag_id='pool_dag', schedule_interval='0 0 * * *', default_args=default_
         endpoint='/latest?base=JPY',
         xcom_push=True
     )
- 
-    # Templated command with macros
+
+    # mostra as taxas na tela
     bash_command="""
         {% for task in dag.task_ids %}
             echo "{{ task }}"
@@ -53,10 +55,11 @@ with DAG(dag_id='pool_dag', schedule_interval='0 0 * * *', default_args=default_
         {% endfor %}
     """
 
-    # Show rates
+    # mostra os resultados no bash
     show_data = BashOperator(
         task_id='show_result',
         bash_command=bash_command
     )
 
+    # ainda define a ordem a ser executada
     [get_forex_rate_EUR, get_forex_rate_USD, get_forex_rate_JPY] >> show_data

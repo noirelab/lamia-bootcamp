@@ -5,34 +5,36 @@ from airflow.operators.bash_operator import BashOperator
 from airflow.operators.dummy_operator import DummyOperator
 from datetime import datetime, timedelta
 
+# define os argumentos padrão para a dag
 default_args = {
-        "owner": "airflow", 
+        "owner": "airflow",
         "start_date": airflow.utils.dates.days_ago(10),
     }
 
+# cria a dag
 with DAG(dag_id="data_dag", default_args=default_args, schedule_interval="@daily") as dag:
 
+    # tarefa dummy que simula o envio de dados
     upload = DummyOperator(task_id="upload")
 
+    # tarefa bash para simular o processamento de dados
     process = BashOperator(
             task_id="process",
-            bash_command="echo 'processing'"
+            bash_command="echo 'processing'"  # imprime 'processing' no log
         )
 
-    # This task will fail half the time based
-    # based on the day of the execution date modulo 2
-    # If day 16 % 2 = exit 0
-    # If day 17 % 2 = exit 1
+    # tarefa bash que falha dependendo do dia da execução
     fail = BashOperator(
             task_id="fail",
             bash_command="""
-                valid={{macros.ds_format(ds, "%Y-%m-%d", "%d")}}
-                if [ $(($valid % 2)) == 1 ]; then
+                valid={{macros.ds_format(ds, "%Y-%m-%d", "%d")}}  # extrai o dia da execução
+                if [ $(($valid % 2)) == 1 ]; then  # se o dia for ímpar, falha
                         exit 1
-                else
+                else  # se o dia for par, sucesso
                         exit 0
                 fi
             """
         )
 
+    # define a sequência de execução das tarefas
     upload >> process >> fail

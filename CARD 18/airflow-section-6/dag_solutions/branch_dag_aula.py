@@ -15,9 +15,7 @@ IP_GEOLOCATION_APIS = {
     'ipinfo': 'https://ipinfo.io/json'
 }
 
-# Try to get the country_code field from each API
-# If given, the API is returned and the next task corresponding
-# to this API will be executed
+# função para verificar se a API está funcionando
 def check_api():
     apis = []
     for api, link in IP_GEOLOCATION_APIS.items():
@@ -26,35 +24,37 @@ def check_api():
             data = r.json()
             if data and 'country' in data and len(data['country']):
                 apis.append(api)
-                # return 'ipinfo' # mudar para 'ipinfo'
         except ValueError:
             pass
-    return apis if len(apis) > 0 else 'none' # adicionado a condição para caso o tamanho do vetor apis seja maior que 0
+    return apis if len(apis) > 0 else 'none'
 
+# com a dag certa, cria as tarefas
 with DAG(dag_id='branch_dag',
     default_args=default_args,
     schedule_interval="@once") as dag:
 
-    # BranchPythonOperator
-    # The next task depends on the return from the
-    # python function check_api
+    # depdendendo do resultado da função, escolhe o caminho
     check_api = BranchPythonOperator(
         task_id='check_api',
         python_callable=check_api
     )
 
+    # tarefa de teste
     none = DummyOperator(
         task_id='none'
     )
-    # adicionar a trigger_rule='one_success'
+
+    # tarefa de teste
     save = DummyOperator(task_id='save', trigger_rule='one_success')
 
+    # ordem das tarefas
     check_api >> none >> save
 
-    # Dynamically create tasks according to the APIs
+    # cria dinamicamente as tasks de acordo com a api
     for api in IP_GEOLOCATION_APIS:
         process = DummyOperator(
             task_id=api
         )
 
+        # ordem das tasks
         check_api >> process >> save
