@@ -1,3 +1,5 @@
+# ------- Adicionado um sleep e mensagem de conclusão ao final da execução
+
 import airflow
 import requests
 from airflow.models import DAG
